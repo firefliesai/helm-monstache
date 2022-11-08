@@ -45,7 +45,7 @@ spec:
           - --enable-http-server
           - -f
           - /etc/monstache/config.toml
-          volumeMount:
+          volumeMounts:
             - mountPath: /etc/monstache/config.toml
               name: monstache-config
               subPath: config.toml
