@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: {{ include "monstache.fullname" . }}
 data:
-  config: |-
+  config.toml: |-
     {{- range $key, $val := .Values.config }}
     {{ $key }} = {{ $val | toJson }}
     {{- end }}
