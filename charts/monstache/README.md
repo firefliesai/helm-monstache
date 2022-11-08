@@ -53,6 +53,7 @@ script:
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | config | object | `{"change-stream-namespaces":["elasticsearch-master"],"config-database-name":"mongodb"}` | Monstache related [global](https://rwynn.github.io/monstache-site/start/#usage) config |
+| env | object | `{}` | Environment Variables to be injected |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"rwynn/monstache"` |  |

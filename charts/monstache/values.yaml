@@ -81,6 +81,9 @@ tolerations: []
 
 affinity: {}
 
+# -- Environment Variables to be injected
+env: {}
+
 # -- Monstache related [global](https://rwynn.github.io/monstache-site/start/#usage) config
 config:
   change-stream-namespaces:
