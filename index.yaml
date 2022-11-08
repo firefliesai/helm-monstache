@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  monstache:
+  - apiVersion: v2
+    appVersion: rel6
+    created: "2022-11-08T09:01:13.215853012Z"
+    description: A Helm chart for deploying Monstache on Kubernetes
+    digest: efdcc54efd312eca5365ef605ed55dbf27f62c4ea69f41cecbb964be3e97cadd
+    name: monstache
+    type: application
+    urls:
+    - https://github.com/firefliesai/helm-monstache/releases/download/monstache-1.0.0/monstache-1.0.0.tgz
+    version: 1.0.0
+generated: "2022-11-08T09:01:13.215857812Z"
