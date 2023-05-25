@@ -8,7 +8,7 @@ data:
     {{ $key }} = {{ $val | toJson }}
     {{- end }}
     {{- if .Values.worker.enabled }}
-    workers: [
+    workers = [
     {{- range $i, $e := until (.Values.worker.count | int) }}
     "{{ include "monstache.fullname" $ }}-{{ $i }}",
     {{- end }}
