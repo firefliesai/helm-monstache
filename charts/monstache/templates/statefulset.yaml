@@ -1,23 +1,19 @@
-{{- if not .Values.worker.enabled }}
+{{- if .Values.worker.enabled }}
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "monstache.fullname" . }}
   labels:
     {{- include "monstache.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: {{ .Values.worker.count }}
   selector:
     matchLabels:
       {{- include "monstache.selectorLabels" . | nindent 6 }}
+  serviceName: {{ include "monstache.fullname" . }}
+  volumeClaimTemplates: []
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
         {{- include "monstache.selectorLabels" . | nindent 8 }}
     spec:
@@ -41,6 +37,12 @@ spec:
           {{- with .Values.env }}
           env:
             {{- toYaml . | nindent 12 }}
+            {{- if $.Values.worker.enabled }}
+            - name: MONSTACHE_WORKER
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            {{- end -}}
           {{- end }}
           args:
           - --enable-http-server
@@ -66,16 +68,4 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
 {{- end }}
