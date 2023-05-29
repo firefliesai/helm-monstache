@@ -7,6 +7,13 @@ data:
     {{- range $key, $val := .Values.config }}
     {{ $key }} = {{ $val | toJson }}
     {{- end }}
+    {{- if .Values.worker.enabled }}
+    workers = [
+    {{- range $i, $e := until (.Values.worker.count | int) }}
+    "{{ include "monstache.fullname" $ }}-{{ $i }}",
+    {{- end }}
+    ]
+    {{- end }}
     {{ range $val := .Values.mapping }}
     [[mapping]]
     {{- range $k, $v := $val }}

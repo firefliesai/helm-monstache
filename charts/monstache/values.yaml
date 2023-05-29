@@ -108,3 +108,9 @@ mapping: []
 #       multiline transform code
 # ```
 script: []
+
+worker:
+  # -- Enable worker mode. If enabled, the deployment will be changed into statefulset.
+  enabled: false
+  # -- Number of worker to spawn
+  count: 0

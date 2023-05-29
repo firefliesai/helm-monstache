@@ -81,3 +81,5 @@ script:
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
 | tolerations | list | `[]` |  |
+| worker.count | int | `0` | Number of worker to spawn |
+| worker.enabled | bool | `false` | Enable worker mode. If enabled, the deployment will be changed into statefulset. |

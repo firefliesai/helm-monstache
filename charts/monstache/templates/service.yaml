@@ -5,6 +5,9 @@ metadata:
   labels:
     {{- include "monstache.labels" . | nindent 4 }}
 spec:
+  {{- if .Values.worker.enabled }}
+  clusterIP: None
+  {{- end }}
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
