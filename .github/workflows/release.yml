@@ -41,7 +41,7 @@ jobs:
           if [[ $exists != "200" ]]; then
             echo "Creating release..."
             # package chart
-            ./cr package ${{ inputs.chart_path }}/$repo
+            ./cr package charts/monstache
             # upload chart to github releases
             ./cr upload \
                 --owner "$owner" \
@@ -52,7 +52,7 @@ jobs:
                 --owner "$owner" \
                 --git-repo "$repo" \
                 --token "${{ secrets.GITHUB_TOKEN }}" \
-                --charts-repo ${{ inputs.chart_url }} \
+                --charts-repo https://firefliesai.github.io/helm-monstache \
                 --push
           else
             echo "Release already exists"
